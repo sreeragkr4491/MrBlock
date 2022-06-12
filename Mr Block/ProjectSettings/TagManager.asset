@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WinDoor
+  - Wall
   layers:
   - Default
   - TransparentFX

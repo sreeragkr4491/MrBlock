@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameWonPanel;
     private bool isGameWon = false;
+
+    public GameObject gameLostPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -47,11 +50,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag=="WinDoor")
+        if(collision.tag == "WinDoor")
         {
             gameWonPanel.SetActive(true);
             Debug.Log("Level Complete !!!");
             isGameWon = true;
         }
+        else if (collision.tag == "Wall")
+        {
+            gameLostPanel.SetActive(true);
+            Debug.Log("Level Lost !!!");
+            isGameWon = true;
+        }
+    }
+
+    public void RestartGame()
+    {
+        Debug.Log("Restarting...");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
